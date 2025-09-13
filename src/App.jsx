@@ -13,10 +13,14 @@ export const tabs = [
 export const App = () => {
   const [activeTabId, setActiveTabId] = useState(tabs[0].id);
 
+  // --- обчислюємо fallback ---
+  const effectiveActiveId = tabs.find(t => t.id === activeTabId)?.id ?? tabs[0]?.id;
+  const activeTab = tabs.find(t => t.id === effectiveActiveId);
+
   return (
     <div className="section">
       <h1 className="title">
-        Selected tab is {tabs.find(tab => tab.id === activeTabId)?.title}
+        Selected tab is {activeTab?.title}
       </h1>
 
       <div className="tabs is-boxed">
@@ -29,4 +33,3 @@ export const App = () => {
     </div>
   );
 };
-
